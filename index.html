@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DevConnect — Developer Social Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="nav">
+  <a class="logo" href="#top"><span class="dot"></span>DevConnect</a>
+  <nav>
+    <a href="#feed">Feed</a>
+    <a href="#stack">How it's built</a>
+    <button id="authBtn" class="btn small">Sign in</button>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Talk shop with developers, live.</h1>
+      <p>Chat in real time, share what you're building, and follow people who write code you admire.</p>
+      <div class="cta">
+        <button id="heroJoin" class="btn">Create your profile</button>
+        <a class="btn ghost" href="#feed">Browse the feed</a>
+      </div>
+      <p class="stat"><strong id="userCount" data-to="500">0</strong>+ active developers</p>
+    </div>
+
+    <div class="chat" aria-label="Live chat demo">
+      <div class="chat-head">
+        <div class="tabs" id="channels" role="tablist"></div>
+        <span class="status"><i></i>Connected</span>
+      </div>
+      <div class="msgs" id="msgs" aria-live="polite"></div>
+      <div class="typing" id="typing" hidden>Someone is typing…</div>
+      <form class="composer" id="chatForm">
+        <input id="chatInput" placeholder="Message the channel" autocomplete="off" aria-label="Message">
+        <button class="btn small">Send</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="feed" class="feed-sec">
+    <div class="feed-main">
+      <h2>What developers are posting</h2>
+      <form class="post-form" id="postForm">
+        <textarea id="postText" rows="2" placeholder="Share something you shipped or learned…" aria-label="New post"></textarea>
+        <div class="row">
+          <select id="postTag" aria-label="Tag"><option>react</option><option>node</option><option>devops</option></select>
+          <button class="btn small">Post</button>
+        </div>
+      </form>
+      <div class="filters" id="filters"></div>
+      <div id="posts"></div>
+    </div>
+
+    <aside id="stack" class="stack">
+      <h2>How it's built</h2>
+      <ul class="facts">
+        <li>Real-time chat over WebSockets</li>
+        <li>JWT authentication and profile management</li>
+        <li>Hosted on AWS EC2 behind an NGINX reverse proxy</li>
+      </ul>
+      <div class="chips" id="chips"></div>
+      <p class="chip-info" id="chipInfo">Select a technology to see what it does here.</p>
+    </aside>
+  </section>
+</main>
+
+<dialog id="authDlg">
+  <form method="dialog" id="authForm">
+    <h3>Sign in</h3>
+    <label>Username <input id="uName" required minlength="3" placeholder="ada_codes"></label>
+    <label>Email <input id="uMail" type="email" required placeholder="ada@example.com"></label>
+    <p class="hint">Demo only. Submitting creates a sample JWT in your browser and sends nothing.</p>
+    <pre id="token" hidden></pre>
+    <div class="row">
+      <button value="cancel" class="btn ghost small" formnovalidate>Close</button>
+      <button id="authSubmit" class="btn small" value="default">Sign in</button>
+    </div>
+  </form>
+</dialog>
+<div id="toast" class="toast" role="status"></div>
+<script src="script.js"></script>
+</body>
+</html>
